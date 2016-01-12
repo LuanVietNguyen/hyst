@@ -985,14 +985,13 @@ public class ModelParserTest {
         Configuration c = flatten(test1);
         BaseComponent ha = (BaseComponent) c.root;
 
-        Classification cls = new Classification();
         Classification.ha = ha;
-        cls.setVarID(ha);
+        Classification.setVarID(ha);
         SimulinkStateflowPrinter sp = new SimulinkStateflowPrinter();
         sp.ha = ha;
         //sp.setVarID(ha);
         AutomatonMode mode = ha.modes.get("running");
-        cls.setLinearMatrix(mode);
+        Classification.setLinearMatrix(mode);
         String s = sp.convertFlowToAMatrix(mode);
         String result = "[2.0 4.0 ;0.0 -3.0 ;]";
         Assert.assertEquals(s, result);
@@ -1008,14 +1007,13 @@ public class ModelParserTest {
         Configuration c = flatten(test1);
         BaseComponent ha = (BaseComponent) c.root;
 
-        Classification cls = new Classification();
         Classification.ha = ha;
-        cls.setVarID(ha);
+        Classification .setVarID(ha);
         SimulinkStateflowPrinter sp = new SimulinkStateflowPrinter();
         sp.ha = ha;
         //sp.setVarID(ha);
         AutomatonMode mode = ha.modes.get("running");
-        cls.setLinearMatrix(mode);
+        Classification.setLinearMatrix(mode);
         String s = sp.convertFlowToAMatrix(mode);
         String result = "[-1.0 4.0 2.0 ;2.0 -3.0 3.0 ;0.0 2.0 4.0 ;]";
         Assert.assertEquals(s, result);
@@ -1030,15 +1028,14 @@ public class ModelParserTest {
 
         Configuration c = flatten(test1);
         BaseComponent ha = (BaseComponent) c.root;
-
-        Classification cls = new Classification();
+        
         Classification.ha = ha;
-        cls.setVarID(ha);
+        Classification.setVarID(ha);
         SimulinkStateflowPrinter sp = new SimulinkStateflowPrinter();
         sp.ha = ha;
         //sp.setVarID(ha);
         AutomatonMode mode = ha.modes.get("running");
-        cls.setLinearMatrix(mode);
+        Classification.setLinearMatrix(mode);
         String s = sp.convertFlowToAMatrix(mode);
         String result = "[1.0 ;]";
         Assert.assertEquals(s, result);
@@ -1054,14 +1051,13 @@ public class ModelParserTest {
         Configuration c = flatten(test1);
         BaseComponent ha = (BaseComponent) c.root;
 
-        Classification cls = new Classification();
         Classification.ha = ha;
-        cls.setVarID(ha);
+        Classification.setVarID(ha);
         SimulinkStateflowPrinter sp = new SimulinkStateflowPrinter();
         sp.ha = ha;
         //sp.setVarID(ha);
         AutomatonMode mode = ha.modes.get("running");
-        cls.setLinearMatrix(mode);
+        Classification.setLinearMatrix(mode);
         String s = sp.convertFlowToAMatrix(mode);
         String result = "[0.0 ;]";
         Assert.assertEquals(s, result);
@@ -1077,14 +1073,13 @@ public class ModelParserTest {
         Configuration c = flatten(test1);
         BaseComponent ha = (BaseComponent) c.root;
 
-        Classification cls = new Classification();
         Classification.ha = ha;
-        cls.setVarID(ha);
+        Classification.setVarID(ha);
         SimulinkStateflowPrinter sp = new SimulinkStateflowPrinter();
         sp.ha = ha;
         //sp.setVarID(ha);
         AutomatonMode mode = ha.modes.get("running");
-        cls.setLinearMatrix(mode);
+        Classification.setLinearMatrix(mode);
 
         //System.out.println("mode = " + mode);
         String A = sp.convertFlowToAMatrix(mode);
@@ -1106,10 +1101,9 @@ public class ModelParserTest {
         BaseComponent ha = ((BaseComponent) c.root);
         AutomatonMode mode = ha.modes.values().iterator().next();
 
-        Classification cls = new Classification();
         Classification.ha = ha;
-        cls.setVarID(ha);
-        cls.setLinearMatrix(mode);  
+        Classification.setVarID(ha);
+        Classification.setLinearMatrix(mode);  
         double TOL = 1e-9;
         Assert.assertEquals(-1, Classification.linearMatrix[0][0], TOL);
     }
@@ -1129,14 +1123,13 @@ public class ModelParserTest {
 
                 //Configuration c = flatten(test1);
 		//BaseComponent ha = (BaseComponent)c.root;
-        Classification cls = new Classification();
         Classification.ha = ha;
-        cls.setVarID(ha);
+        Classification.setVarID(ha);
         SimulinkStateflowPrinter sp = new SimulinkStateflowPrinter();
         sp.ha = ha;
         //sp.setVarID(ha);
         AutomatonMode mode = ha.modes.get("running");
-        cls.setLinearMatrix(mode);
+        Classification.setLinearMatrix(mode);
         // test A matrix
         String A = sp.convertFlowToAMatrix(mode);
         String resultA = "[1.0 4.0 ;0.5 -3.0 ;]";

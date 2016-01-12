@@ -242,7 +242,7 @@ public class Classification {
     /**
      * merge all variables and constants
      */
-    public void setVarID(BaseComponent ha) {
+    public static void setVarID(BaseComponent ha) {
         varID = new LinkedHashMap<String, Integer>();
         int id = 0;
         for (String v : ha.variables) {
@@ -256,7 +256,7 @@ public class Classification {
     /**
      * set general A matrix for each mode
      */
-    public void setLinearMatrix(AutomatonMode m) {
+     public static void setLinearMatrix(AutomatonMode m) {
         if (!isLinearDynamics(m.flowDynamics)) {
             throw new AutomatonValidationException("this is not a linear automaton");
         } else {
@@ -275,7 +275,7 @@ public class Classification {
      * find coefficients for all variables and constants of the linear
      * expressions
      */
-    private void findCoefficient(int i, Expression e) {
+    private static void findCoefficient(int i, Expression e) {
 
         if (e instanceof Variable) {
             if (e.getParent() != null) {

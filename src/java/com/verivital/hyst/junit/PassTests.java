@@ -723,7 +723,7 @@ public class PassTests {
 																				// error
 		}
 	}
-
+        
 	@Test
 	public void testContinuizationPassSineWave() {
 		String[][] dynamics = { { "y", "cos(t)" }, { "t", "1" } };
