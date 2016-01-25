@@ -154,13 +154,13 @@ public class MatlabBridge
 		
 		final MatlabBridge bridge = this;
 
-		Runtime.getRuntime().addShutdownHook(new Thread()
+		/*Runtime.getRuntime().addShutdownHook(new Thread()
 		{
 			 public void run() 
 			 {
 				 bridge.close();
 			 }
-		});
+		});*/
 		
 		statusMatlab = Status.TRUE;
 	}
