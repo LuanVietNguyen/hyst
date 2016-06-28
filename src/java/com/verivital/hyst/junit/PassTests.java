@@ -1,12 +1,8 @@
 package com.verivital.hyst.junit;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -15,17 +11,12 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import com.verivital.hyst.geometry.HyperPoint;
-import com.verivital.hyst.geometry.HyperRectangle;
-import com.verivital.hyst.geometry.Interval;
 import com.verivital.hyst.grammar.formula.Constant;
-import com.verivital.hyst.grammar.formula.DefaultExpressionPrinter;
 import com.verivital.hyst.grammar.formula.Expression;
 import com.verivital.hyst.grammar.formula.FormulaParser;
 import com.verivital.hyst.importer.ConfigurationMaker;
 import com.verivital.hyst.importer.SpaceExImporter;
 import com.verivital.hyst.importer.TemplateImporter;
-import com.verivital.hyst.ir.AutomatonExportException;
 import com.verivital.hyst.ir.Component;
 import com.verivital.hyst.ir.Configuration;
 import com.verivital.hyst.ir.base.AutomatonMode;
@@ -38,14 +29,8 @@ import com.verivital.hyst.ir.network.NetworkComponent;
 import com.verivital.hyst.matlab.MatlabBridge;
 import com.verivital.hyst.passes.basic.SimplifyExpressionsPass;
 import com.verivital.hyst.passes.basic.SubstituteConstantsPass;
-import com.verivital.hyst.passes.complex.ContinuizationPass;
 import com.verivital.hyst.passes.complex.OrderReductionPass;
-import com.verivital.hyst.passes.complex.PseudoInvariantSimulatePass;
-import com.verivital.hyst.passes.complex.hybridize.HybridizeGridPass;
-import com.verivital.hyst.passes.complex.hybridize.HybridizeMixedTriggeredPass;
 import com.verivital.hyst.python.PythonBridge;
-import com.verivital.hyst.util.AutomatonUtil;
-import com.verivital.hyst.util.RangeExtractor;
 
 import de.uni_freiburg.informatik.swt.sxhybridautomaton.SpaceExDocument;
 
@@ -118,17 +103,7 @@ public class PassTests {
 		return c;
 	}
 
-	/**
-	 * make a sample base configuration with a single mode, with x' == 1, and y'
-	 * == 1
-	 * 
-	 * @return the constructed Configuration
-	 */
-	private static Configuration makeSampleBaseConfiguration() {
-		String[][] dynamics = {{"x","1"}, {"y", "1"}}; 
-		
-		return AutomatonUtil.makeDebugConfiguration(dynamics);
-	}
+	
 
 	@Test
 	public void testSimplifyExpressions() {
@@ -162,6 +137,7 @@ public class PassTests {
 		new SimplifyExpressionsPass().runTransformationPass(config, null);
 	}
 
+<<<<<<< HEAD
 	/**
 	 * An ExpresssionPrinter which prints constants to a certain number of
 	 * digits after the decimel
@@ -773,6 +749,8 @@ public class PassTests {
 
 	}
 
+=======
+>>>>>>> 1ad0feed7ddc7ff7b8ca16922c215a3ecc09df47
 	@Test
 	public void testOrderReductionpass() {
 		if (!MatlabBridge.hasMatlab())
@@ -785,7 +763,7 @@ public class PassTests {
 		Map<String, Component> componentTemplates = TemplateImporter.createComponentTemplates(doc);
 
 		Configuration c = ConfigurationMaker.fromSpaceEx(doc, componentTemplates);
-		String OrderReductionPassParam = "3";
+		String OrderReductionPassParam = "-reducedOrder 3";
 
 		new OrderReductionPass().runTransformationPass(c, OrderReductionPassParam);
 		BaseComponent ha = (BaseComponent) c.root;

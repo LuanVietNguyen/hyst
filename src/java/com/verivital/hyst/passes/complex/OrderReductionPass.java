@@ -2,7 +2,7 @@ package com.verivital.hyst.passes.complex;
 
 import java.util.Map.Entry;
 
-import matlabcontrol.MatlabProxy;
+import org.kohsuke.args4j.Option;
 
 import com.verivital.hyst.grammar.formula.FormulaParser;
 import com.verivital.hyst.ir.AutomatonExportException;
@@ -14,13 +14,54 @@ import com.verivital.hyst.passes.TransformationPass;
 import com.verivital.hyst.printers.SimulinkStateflowPrinter;
 import com.verivital.hyst.util.Classification;
 
+import matlabcontrol.MatlabProxy;
+
 /**
  * Perform order reduction
  *
  * @author Taylor Johnson (October 2015)
  *
  */
+<<<<<<< HEAD
 public class OrderReductionPass extends TransformationPass {
+=======
+public class OrderReductionPass extends TransformationPass 
+{
+	@Option(name="-reducedOrder",required=true,usage="reduced order dimensionality", metaVar="NUM")
+	private int reducedOrder;
+
+	@Override
+	public String getName() {
+		return "Order Reduction (decrease dimensionality) Pass";
+	}
+
+	@Override
+	public String getCommandLineFlag() {
+		return "-order_reduction";
+	}
+
+	@Override
+	protected void runPass() {
+		Hyst.log("Using order reduction params reducedOrder = " + reducedOrder);
+		
+		BaseComponent ha = (BaseComponent) config.root;
+
+		Classification cf = new Classification();
+		cf.ha = ha;
+		cf.setVarID(ha);
+		SimulinkStateflowPrinter sp = new SimulinkStateflowPrinter();
+		sp.ha = ha;
+		sp.setConfig(config);
+		// sp.setVarID(ha);
+		MatlabProxy proxy;
+		try {
+			proxy = MatlabBridge.getInstance().getProxy();
+
+			proxy.eval("[path_parent,path_current] = fileparts(pwd)");
+			proxy.eval("if strcmp(path_current, 'matlab') cd ../; end");
+			proxy.eval("[path_parent,path_current] = fileparts(pwd)");
+			proxy.eval("if ~strcmp(path_current, 'pass_order_reduction') cd ./matlab/pass_order_reduction; end");
+>>>>>>> 1ad0feed7ddc7ff7b8ca16922c215a3ecc09df47
 
     private int reducedOrder;
 
@@ -43,6 +84,7 @@ public class OrderReductionPass extends TransformationPass {
     protected void runPass(String params) {
         BaseComponent ha = (BaseComponent) config.root;
 
+<<<<<<< HEAD
         processParams(ha, params);
 
         Classification.ha = ha;
@@ -201,4 +243,8 @@ public class OrderReductionPass extends TransformationPass {
         Hyst.log("Using order reduction params reducedOrder = " + reducedOrder);
     }
 
+=======
+		// todo: remove variables from other places (init, resets, etc.)
+	}
+>>>>>>> 1ad0feed7ddc7ff7b8ca16922c215a3ecc09df47
 }
